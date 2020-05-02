@@ -1,32 +1,25 @@
 {
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "2.0.0",
-        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
-      }
-    },
-    {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-phishingprotection",
-        "sha": "e103818ce3f886fecfa70d2c8324b4c1c277ccd6"
+        "remote": "https://github.com/googleapis/python-phishingprotection.git",
+        "sha": "6360c9ef96738f1703f1956acf2109d97440c51e"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "aaff764c185e18a6c73227357c3df5fa60fec85a",
-        "internalRef": "309426927"
+        "sha": "ee9e8e4e67f06aba881392a1a2956fbe7a42d216",
+        "internalRef": "309481123"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "cdddf139b36000b3a7c65fd2a7781e253262359a"
+        "sha": "04cb397eb7590ea1e6c10a39fca3d8fe0fb3d256"
       }
     }
   ],
@@ -37,8 +30,7 @@
         "apiName": "phishingprotection",
         "apiVersion": "v1beta1",
         "language": "python",
-        "generator": "gapic",
-        "config": "google/cloud/phishingprotection/artman_phishingprotection_v1beta1.yaml"
+        "generator": "bazel"
       }
     }
   ]

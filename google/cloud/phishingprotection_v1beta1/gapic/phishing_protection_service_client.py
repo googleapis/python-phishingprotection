@@ -205,14 +205,11 @@ class PhishingProtectionServiceClient(object):
         metadata=None,
     ):
         """
-        Reports a URI suspected of containing phishing content to be reviewed.
-        Once the report review is complete, its result can be found in the Cloud
-        Security Command Center findings dashboard for Phishing Protection. If
-        the result verifies the existence of malicious phishing content, the
-        site will be added the to `Google's Social Engineering
-        lists <https://support.google.com/webmasters/answer/6350487/>`__ in
-        order to protect users that could get exposed to this threat in the
-        future.
+        If set, all the classes from the .proto file are wrapped in a single
+        outer class with the given name. This applies to both Proto1 (equivalent
+        to the old "--one_java_file" option) and Proto2 (where a .proto always
+        translates to a single class, but you may want to explicitly choose the
+        class name).
 
         Example:
             >>> from google.cloud import phishingprotection_v1beta1
@@ -227,8 +224,10 @@ class PhishingProtectionServiceClient(object):
             >>> response = client.report_phishing(parent, uri)
 
         Args:
-            parent (str): Required. The name of the project for which the report will be created,
-                in the format "projects/{project\_number}".
+            parent (str): Denotes a field as output only. This indicates that the field is
+                provided in responses, but including the field in a request does nothing
+                (the server *must* ignore it and *must not* throw an error as a result
+                of the field's presence).
             uri (str): Required. The URI that is being reported for phishing content to be analyzed.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will

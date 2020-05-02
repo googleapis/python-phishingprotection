@@ -116,14 +116,11 @@ class PhishingProtectionServiceGrpcTransport(object):
     def report_phishing(self):
         """Return the gRPC stub for :meth:`PhishingProtectionServiceClient.report_phishing`.
 
-        Reports a URI suspected of containing phishing content to be reviewed.
-        Once the report review is complete, its result can be found in the Cloud
-        Security Command Center findings dashboard for Phishing Protection. If
-        the result verifies the existence of malicious phishing content, the
-        site will be added the to `Google's Social Engineering
-        lists <https://support.google.com/webmasters/answer/6350487/>`__ in
-        order to protect users that could get exposed to this threat in the
-        future.
+        If set, all the classes from the .proto file are wrapped in a single
+        outer class with the given name. This applies to both Proto1 (equivalent
+        to the old "--one_java_file" option) and Proto2 (where a .proto always
+        translates to a single class, but you may want to explicitly choose the
+        class name).
 
         Returns:
             Callable: A callable which accepts the appropriate
