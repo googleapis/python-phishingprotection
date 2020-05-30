@@ -120,8 +120,6 @@ ReportPhishingRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _REPORTPHISHINGREQUEST,
         "__module__": "google.cloud.phishingprotection_v1beta1.proto.phishingprotection_pb2",
         "__doc__": """The ReportPhishing request message.
-  
-  
   Attributes:
       parent:
           Required. The name of the project for which the report will be
@@ -141,8 +139,7 @@ ReportPhishingResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _REPORTPHISHINGRESPONSE,
         "__module__": "google.cloud.phishingprotection_v1beta1.proto.phishingprotection_pb2",
-        "__doc__": """The ReportPhishing (empty) response message.
-  """,
+        "__doc__": """The ReportPhishing (empty) response message.""",
         # @@protoc_insertion_point(class_scope:google.cloud.phishingprotection.v1beta1.ReportPhishingResponse)
     },
 )
