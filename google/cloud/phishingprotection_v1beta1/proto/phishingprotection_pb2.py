@@ -174,7 +174,7 @@ _PHISHINGPROTECTIONSERVICEV1BETA1 = _descriptor.ServiceDescriptor(
             output_type=_REPORTPHISHINGRESPONSE,
             serialized_options=b'\202\323\344\223\0021",/v1beta1/{parent=projects/*}/phishing:report:\001*\332A\nparent,uri',
             create_key=_descriptor._internal_create_key,
-        )
+        ),
     ],
 )
 _sym_db.RegisterServiceDescriptor(_PHISHINGPROTECTIONSERVICEV1BETA1)

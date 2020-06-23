@@ -25,7 +25,9 @@ from google.cloud.phishingprotection_v1beta1.proto import phishingprotection_pb2
 
 _shared_modules = []
 
-_local_modules = [phishingprotection_pb2]
+_local_modules = [
+    phishingprotection_pb2,
+]
 
 names = []
 

@@ -40,4 +40,7 @@ class PhishingProtectionServiceClient(
     __doc__ = phishing_protection_service_client.PhishingProtectionServiceClient.__doc__
 
 
-__all__ = ("types", "PhishingProtectionServiceClient")
+__all__ = (
+    "types",
+    "PhishingProtectionServiceClient",
+)

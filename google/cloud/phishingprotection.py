@@ -21,4 +21,7 @@ from google.cloud.phishingprotection_v1beta1 import PhishingProtectionServiceCli
 from google.cloud.phishingprotection_v1beta1 import types
 
 
-__all__ = ("types", "PhishingProtectionServiceClient")
+__all__ = (
+    "types",
+    "PhishingProtectionServiceClient",
+)

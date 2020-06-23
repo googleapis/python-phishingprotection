@@ -47,7 +47,7 @@ def add_PhishingProtectionServiceV1Beta1Servicer_to_server(servicer, server):
             servicer.ReportPhishing,
             request_deserializer=google_dot_cloud_dot_phishingprotection__v1beta1_dot_proto_dot_phishingprotection__pb2.ReportPhishingRequest.FromString,
             response_serializer=google_dot_cloud_dot_phishingprotection__v1beta1_dot_proto_dot_phishingprotection__pb2.ReportPhishingResponse.SerializeToString,
-        )
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
         "google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1",
