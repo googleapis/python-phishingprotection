@@ -39,7 +39,7 @@ Deprecated Python Versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 Python == 2.7.
 
-The last version of this library compatible with Python 2.7 is google-cloud-texttospeech==1.0.1.
+The last version of this library compatible with Python 2.7 is google-cloud-phishing-protection==0.4.0.
 
 Installation
 ~~~~~~~~~~~~
