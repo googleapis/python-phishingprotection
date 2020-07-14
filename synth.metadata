@@ -4,14 +4,14 @@
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/python-phishingprotection.git",
-        "sha": "16176a9fdd3f3174b9a6212481d395fbf1b4b88c"
+        "sha": "c0d3f2d8388b324ef7c33ee051eea343a21f840d"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "3a89215abd0e66dfc4f21d07d552d0b543abf082"
+        "sha": "dbe60ec0ab6e093298cf41338e0122cce6ce7c24"
       }
     }
   ],

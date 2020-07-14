@@ -25,8 +25,8 @@ version = "0.4.0"
 release_status = "Development Status :: 4 - Beta"
 dependencies = [
     "google-api-core[grpc] >= 1.21.0, < 2.0.0dev",
-    'libcst >= 0.2.5',
-    'proto-plus >= 1.1.0',
+    "libcst >= 0.2.5",
+    "proto-plus >= 1.1.0",
     'enum34; python_version < "3.4"',
 ]
 
@@ -37,7 +37,9 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
 packages = [
-    package for package in setuptools.PEP420PackageFinder.find() if package.startswith("google")
+    package
+    for package in setuptools.PEP420PackageFinder.find()
+    if package.startswith("google")
 ]
 
 namespaces = ["google"]
