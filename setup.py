@@ -24,7 +24,9 @@ description = "Phishing Protection API API client library"
 version = "0.4.0"
 release_status = "Development Status :: 4 - Beta"
 dependencies = [
-    "google-api-core[grpc] >= 1.14.0, < 2.0.0dev",
+    "google-api-core[grpc] >= 1.21.0, < 2.0.0dev",
+    'libcst >= 0.2.5',
+    'proto-plus >= 1.1.0',
     'enum34; python_version < "3.4"',
 ]
 
@@ -35,7 +37,7 @@ with io.open(readme_filename, encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
 packages = [
-    package for package in setuptools.find_packages() if package.startswith("google")
+    package for package in setuptools.PEP420PackageFinder.find() if package.startswith("google")
 ]
 
 namespaces = ["google"]
@@ -56,8 +58,6 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
@@ -69,6 +69,8 @@ setuptools.setup(
     packages=packages,
     namespace_packages=namespaces,
     install_requires=dependencies,
+    python_requires=">=3.6",
+    scripts=["scripts/fixup_phishingprotection_v1beta1_keywords.py"],
     include_package_data=True,
     zip_safe=False,
 )
