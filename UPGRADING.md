@@ -43,7 +43,7 @@ response = client.report_phishing(parent, uri)
 ```py
 from google.cloud import phishingprotection_v1beta1
 client = phishingprotection_v1beta1.PhishingProtectionServiceClient()
-response = client.search_hashes(request={"parent": "project/project_number", "uri": "''"})
+response = client.report_phishing(request={"parent": "project/project_number", "uri": "''"})
 ```
 
 ### More Details
@@ -96,7 +96,7 @@ response = client.report_phishing(
 ```
 
 ```py
-response = client.search_hashes(
+response = client.report_phishing(
     parent=parent,
     uri=uri,
 )
@@ -106,7 +106,7 @@ This call is invalid because it mixes `request` with a keyword argument `uri`. E
 will result in an error.
 
 ```py
-response = client.synthesize_speech(
+response = client.report_phishing(
     request={
         "parent": parent,
     },
