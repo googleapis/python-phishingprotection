@@ -3,8 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-phishingprotection.git",
-        "sha": "c0d3f2d8388b324ef7c33ee051eea343a21f840d"
+        "remote": "https://github.com/googleapis/python-phishingprotection.git",
+        "sha": "826fabd0b6591a7cca7cfcdbcc16b853c067cd3d"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "868615a5c1c1059c636bb3d82a555edb1d5a251e",
+        "internalRef": "324294521"
       }
     },
     {
