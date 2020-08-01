@@ -222,6 +222,7 @@ class PhishingProtectionServiceV1Beta1Client(
                 scopes=client_options.scopes,
                 api_mtls_endpoint=client_options.api_endpoint,
                 client_cert_source=client_options.client_cert_source,
+                quota_project_id=client_options.quota_project_id,
             )
 
     def report_phishing(
@@ -277,29 +278,31 @@ class PhishingProtectionServiceV1Beta1Client(
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, uri]):
+        has_flattened_params = any([parent, uri])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = phishingprotection.ReportPhishingRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a phishingprotection.ReportPhishingRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, phishingprotection.ReportPhishingRequest):
+            request = phishingprotection.ReportPhishingRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if parent is not None:
-            request.parent = parent
-        if uri is not None:
-            request.uri = uri
+            if parent is not None:
+                request.parent = parent
+            if uri is not None:
+                request.uri = uri
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.report_phishing,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.report_phishing]
 
         # Certain fields should be provided within the metadata header;
         # add these here.

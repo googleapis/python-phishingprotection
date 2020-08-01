@@ -22,6 +22,7 @@ import grpc
 from grpc.experimental import aio
 import math
 import pytest
+from proto.marshal.rules.dates import DurationRule, TimestampRule
 
 from google import auth
 from google.api_core import client_options
@@ -45,6 +46,17 @@ from google.oauth2 import service_account
 
 def client_cert_source_callback():
     return b"cert bytes", b"key bytes"
+
+
+# If default endpoint is localhost, then default mtls endpoint will be the same.
+# This method modifies the default endpoint so the client can produce a different
+# mtls endpoint for endpoint testing purposes.
+def modify_default_endpoint(client):
+    return (
+        "foo.googleapis.com"
+        if ("localhost" in client.DEFAULT_ENDPOINT)
+        else client.DEFAULT_ENDPOINT
+    )
 
 
 def test__get_default_mtls_endpoint():
@@ -132,6 +144,16 @@ def test_phishing_protection_service_v1_beta1_client_get_transport_class():
         ),
     ],
 )
+@mock.patch.object(
+    PhishingProtectionServiceV1Beta1Client,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(PhishingProtectionServiceV1Beta1Client),
+)
+@mock.patch.object(
+    PhishingProtectionServiceV1Beta1AsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(PhishingProtectionServiceV1Beta1AsyncClient),
+)
 def test_phishing_protection_service_v1_beta1_client_client_options(
     client_class, transport_class, transport_name
 ):
@@ -162,83 +184,13 @@ def test_phishing_protection_service_v1_beta1_client_client_options(
             scopes=None,
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
+            quota_project_id=None,
         )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
     # "never".
-    os.environ["GOOGLE_API_USE_MTLS"] = "never"
-    with mock.patch.object(transport_class, "__init__") as patched:
-        patched.return_value = None
-        client = client_class()
-        patched.assert_called_once_with(
-            credentials=None,
-            credentials_file=None,
-            host=client.DEFAULT_ENDPOINT,
-            scopes=None,
-            api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-            client_cert_source=None,
-        )
-
-    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
-    # "always".
-    os.environ["GOOGLE_API_USE_MTLS"] = "always"
-    with mock.patch.object(transport_class, "__init__") as patched:
-        patched.return_value = None
-        client = client_class()
-        patched.assert_called_once_with(
-            credentials=None,
-            credentials_file=None,
-            host=client.DEFAULT_MTLS_ENDPOINT,
-            scopes=None,
-            api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-            client_cert_source=None,
-        )
-
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", and client_cert_source is provided.
-    os.environ["GOOGLE_API_USE_MTLS"] = "auto"
-    options = client_options.ClientOptions(
-        client_cert_source=client_cert_source_callback
-    )
-    with mock.patch.object(transport_class, "__init__") as patched:
-        patched.return_value = None
-        client = client_class(client_options=options)
-        patched.assert_called_once_with(
-            credentials=None,
-            credentials_file=None,
-            host=client.DEFAULT_MTLS_ENDPOINT,
-            scopes=None,
-            api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-            client_cert_source=client_cert_source_callback,
-        )
-
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", and default_client_cert_source is provided.
-    os.environ["GOOGLE_API_USE_MTLS"] = "auto"
-    with mock.patch.object(transport_class, "__init__") as patched:
-        with mock.patch(
-            "google.auth.transport.mtls.has_default_client_cert_source",
-            return_value=True,
-        ):
-            patched.return_value = None
-            client = client_class()
-            patched.assert_called_once_with(
-                credentials=None,
-                credentials_file=None,
-                host=client.DEFAULT_MTLS_ENDPOINT,
-                scopes=None,
-                api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-                client_cert_source=None,
-            )
-
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", but client_cert_source and default_client_cert_source are None.
-    os.environ["GOOGLE_API_USE_MTLS"] = "auto"
-    with mock.patch.object(transport_class, "__init__") as patched:
-        with mock.patch(
-            "google.auth.transport.mtls.has_default_client_cert_source",
-            return_value=False,
-        ):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "never"}):
+        with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class()
             patched.assert_called_once_with(
@@ -248,15 +200,104 @@ def test_phishing_protection_service_v1_beta1_client_client_options(
                 scopes=None,
                 api_mtls_endpoint=client.DEFAULT_ENDPOINT,
                 client_cert_source=None,
+                quota_project_id=None,
             )
+
+    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
+    # "always".
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "always"}):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            patched.return_value = None
+            client = client_class()
+            patched.assert_called_once_with(
+                credentials=None,
+                credentials_file=None,
+                host=client.DEFAULT_MTLS_ENDPOINT,
+                scopes=None,
+                api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
+                client_cert_source=None,
+                quota_project_id=None,
+            )
+
+    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
+    # "auto", and client_cert_source is provided.
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
+        options = client_options.ClientOptions(
+            client_cert_source=client_cert_source_callback
+        )
+        with mock.patch.object(transport_class, "__init__") as patched:
+            patched.return_value = None
+            client = client_class(client_options=options)
+            patched.assert_called_once_with(
+                credentials=None,
+                credentials_file=None,
+                host=client.DEFAULT_MTLS_ENDPOINT,
+                scopes=None,
+                api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
+                client_cert_source=client_cert_source_callback,
+                quota_project_id=None,
+            )
+
+    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
+    # "auto", and default_client_cert_source is provided.
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.mtls.has_default_client_cert_source",
+                return_value=True,
+            ):
+                patched.return_value = None
+                client = client_class()
+                patched.assert_called_once_with(
+                    credentials=None,
+                    credentials_file=None,
+                    host=client.DEFAULT_MTLS_ENDPOINT,
+                    scopes=None,
+                    api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
+                    client_cert_source=None,
+                    quota_project_id=None,
+                )
+
+    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
+    # "auto", but client_cert_source and default_client_cert_source are None.
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.mtls.has_default_client_cert_source",
+                return_value=False,
+            ):
+                patched.return_value = None
+                client = client_class()
+                patched.assert_called_once_with(
+                    credentials=None,
+                    credentials_file=None,
+                    host=client.DEFAULT_ENDPOINT,
+                    scopes=None,
+                    api_mtls_endpoint=client.DEFAULT_ENDPOINT,
+                    client_cert_source=None,
+                    quota_project_id=None,
+                )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS has
     # unsupported value.
-    os.environ["GOOGLE_API_USE_MTLS"] = "Unsupported"
-    with pytest.raises(MutualTLSChannelError):
-        client = client_class()
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "Unsupported"}):
+        with pytest.raises(MutualTLSChannelError):
+            client = client_class()
 
-    del os.environ["GOOGLE_API_USE_MTLS"]
+    # Check the case quota_project_id is provided
+    options = client_options.ClientOptions(quota_project_id="octopus")
+    with mock.patch.object(transport_class, "__init__") as patched:
+        patched.return_value = None
+        client = client_class(client_options=options)
+        patched.assert_called_once_with(
+            credentials=None,
+            credentials_file=None,
+            host=client.DEFAULT_ENDPOINT,
+            scopes=None,
+            api_mtls_endpoint=client.DEFAULT_ENDPOINT,
+            client_cert_source=None,
+            quota_project_id="octopus",
+        )
 
 
 @pytest.mark.parametrize(
@@ -289,6 +330,7 @@ def test_phishing_protection_service_v1_beta1_client_client_options_scopes(
             scopes=["1", "2"],
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
+            quota_project_id=None,
         )
 
 
@@ -322,6 +364,7 @@ def test_phishing_protection_service_v1_beta1_client_client_options_credentials_
             scopes=None,
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
+            quota_project_id=None,
         )
 
 
@@ -340,17 +383,20 @@ def test_phishing_protection_service_v1_beta1_client_client_options_from_dict():
             scopes=None,
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
+            quota_project_id=None,
         )
 
 
-def test_report_phishing(transport: str = "grpc"):
+def test_report_phishing(
+    transport: str = "grpc", request_type=phishingprotection.ReportPhishingRequest
+):
     client = PhishingProtectionServiceV1Beta1Client(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = phishingprotection.ReportPhishingRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.report_phishing), "__call__") as call:
@@ -363,10 +409,14 @@ def test_report_phishing(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == phishingprotection.ReportPhishingRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, phishingprotection.ReportPhishingResponse)
+
+
+def test_report_phishing_from_dict():
+    test_report_phishing(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -477,7 +527,9 @@ def test_report_phishing_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].uri == "uri_value"
 
 
@@ -520,7 +572,9 @@ async def test_report_phishing_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].uri == "uri_value"
 
 
@@ -615,9 +669,13 @@ def test_phishing_protection_service_v1_beta1_base_transport_error():
 
 def test_phishing_protection_service_v1_beta1_base_transport():
     # Instantiate the base transport.
-    transport = transports.PhishingProtectionServiceV1Beta1Transport(
-        credentials=credentials.AnonymousCredentials(),
-    )
+    with mock.patch(
+        "google.cloud.phishingprotection_v1beta1.services.phishing_protection_service_v1_beta1.transports.PhishingProtectionServiceV1Beta1Transport.__init__"
+    ) as Transport:
+        Transport.return_value = None
+        transport = transports.PhishingProtectionServiceV1Beta1Transport(
+            credentials=credentials.AnonymousCredentials(),
+        )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
@@ -629,14 +687,20 @@ def test_phishing_protection_service_v1_beta1_base_transport():
 
 def test_phishing_protection_service_v1_beta1_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(auth, "load_credentials_from_file") as load_creds:
+    with mock.patch.object(
+        auth, "load_credentials_from_file"
+    ) as load_creds, mock.patch(
+        "google.cloud.phishingprotection_v1beta1.services.phishing_protection_service_v1_beta1.transports.PhishingProtectionServiceV1Beta1Transport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.PhishingProtectionServiceV1Beta1Transport(
-            credentials_file="credentials.json",
+            credentials_file="credentials.json", quota_project_id="octopus",
         )
         load_creds.assert_called_once_with(
             "credentials.json",
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
         )
 
 
@@ -646,7 +710,8 @@ def test_phishing_protection_service_v1_beta1_auth_adc():
         adc.return_value = (credentials.AnonymousCredentials(), None)
         PhishingProtectionServiceV1Beta1Client()
         adc.assert_called_once_with(
-            scopes=("https://www.googleapis.com/auth/cloud-platform",)
+            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id=None,
         )
 
 
@@ -656,10 +721,11 @@ def test_phishing_protection_service_v1_beta1_transport_auth_adc():
     with mock.patch.object(auth, "default") as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         transports.PhishingProtectionServiceV1Beta1GrpcTransport(
-            host="squid.clam.whelk"
+            host="squid.clam.whelk", quota_project_id="octopus"
         )
         adc.assert_called_once_with(
-            scopes=("https://www.googleapis.com/auth/cloud-platform",)
+            scopes=("https://www.googleapis.com/auth/cloud-platform",),
+            quota_project_id="octopus",
         )
 
 
@@ -747,6 +813,7 @@ def test_phishing_protection_service_v1_beta1_grpc_transport_channel_mtls_with_c
         credentials_file=None,
         scopes=("https://www.googleapis.com/auth/cloud-platform",),
         ssl_credentials=mock_ssl_cred,
+        quota_project_id=None,
     )
     assert transport.grpc_channel == mock_grpc_channel
 
@@ -781,6 +848,7 @@ def test_phishing_protection_service_v1_beta1_grpc_asyncio_transport_channel_mtl
         credentials_file=None,
         scopes=("https://www.googleapis.com/auth/cloud-platform",),
         ssl_credentials=mock_ssl_cred,
+        quota_project_id=None,
     )
     assert transport.grpc_channel == mock_grpc_channel
 
@@ -817,6 +885,7 @@ def test_phishing_protection_service_v1_beta1_grpc_transport_channel_mtls_with_a
             credentials_file=None,
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
             ssl_credentials=mock_ssl_cred,
+            quota_project_id=None,
         )
         assert transport.grpc_channel == mock_grpc_channel
 
@@ -853,5 +922,6 @@ def test_phishing_protection_service_v1_beta1_grpc_asyncio_transport_channel_mtl
             credentials_file=None,
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
             ssl_credentials=mock_ssl_cred,
+            quota_project_id=None,
         )
         assert transport.grpc_channel == mock_grpc_channel
