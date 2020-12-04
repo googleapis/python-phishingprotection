@@ -19,8 +19,11 @@ import proto  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.phishingprotection.v1beta1",
-    manifest={"ReportPhishingRequest", "ReportPhishingResponse",},
+    package='google.cloud.phishingprotection.v1beta1',
+    manifest={
+        'ReportPhishingRequest',
+        'ReportPhishingResponse',
+    },
 )
 
 

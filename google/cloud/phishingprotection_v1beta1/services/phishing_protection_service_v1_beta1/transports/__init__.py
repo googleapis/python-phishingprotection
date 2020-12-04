@@ -24,17 +24,13 @@ from .grpc_asyncio import PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = (
-    OrderedDict()
-)  # type: Dict[str, Type[PhishingProtectionServiceV1Beta1Transport]]
-_transport_registry["grpc"] = PhishingProtectionServiceV1Beta1GrpcTransport
-_transport_registry[
-    "grpc_asyncio"
-] = PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport
+_transport_registry = OrderedDict()  # type: Dict[str, Type[PhishingProtectionServiceV1Beta1Transport]]
+_transport_registry['grpc'] = PhishingProtectionServiceV1Beta1GrpcTransport
+_transport_registry['grpc_asyncio'] = PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport
 
 
 __all__ = (
-    "PhishingProtectionServiceV1Beta1Transport",
-    "PhishingProtectionServiceV1Beta1GrpcTransport",
-    "PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport",
+    'PhishingProtectionServiceV1Beta1Transport',
+    'PhishingProtectionServiceV1Beta1GrpcTransport',
+    'PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport',
 )
