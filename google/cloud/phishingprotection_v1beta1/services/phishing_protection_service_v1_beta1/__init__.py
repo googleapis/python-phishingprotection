@@ -19,6 +19,6 @@ from .client import PhishingProtectionServiceV1Beta1Client
 from .async_client import PhishingProtectionServiceV1Beta1AsyncClient
 
 __all__ = (
-    'PhishingProtectionServiceV1Beta1Client',
-    'PhishingProtectionServiceV1Beta1AsyncClient',
+    "PhishingProtectionServiceV1Beta1Client",
+    "PhishingProtectionServiceV1Beta1AsyncClient",
 )

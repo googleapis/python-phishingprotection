@@ -15,10 +15,13 @@
 # limitations under the License.
 #
 
-from .phishingprotection import (ReportPhishingRequest, ReportPhishingResponse, )
+from .phishingprotection import (
+    ReportPhishingRequest,
+    ReportPhishingResponse,
+)
 
 
 __all__ = (
-    'ReportPhishingRequest',
-    'ReportPhishingResponse',
+    "ReportPhishingRequest",
+    "ReportPhishingResponse",
 )

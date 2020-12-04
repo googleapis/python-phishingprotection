@@ -15,13 +15,15 @@
 # limitations under the License.
 #
 
-from .services.phishing_protection_service_v1_beta1 import PhishingProtectionServiceV1Beta1Client
+from .services.phishing_protection_service_v1_beta1 import (
+    PhishingProtectionServiceV1Beta1Client,
+)
 from .types.phishingprotection import ReportPhishingRequest
 from .types.phishingprotection import ReportPhishingResponse
 
 
 __all__ = (
-    'ReportPhishingRequest',
-    'ReportPhishingResponse',
-'PhishingProtectionServiceV1Beta1Client',
+    "ReportPhishingRequest",
+    "ReportPhishingResponse",
+    "PhishingProtectionServiceV1Beta1Client",
 )

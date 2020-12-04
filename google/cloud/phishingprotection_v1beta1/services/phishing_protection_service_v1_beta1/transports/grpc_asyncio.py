@@ -18,13 +18,13 @@
 import warnings
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import grpc_helpers_async         # type: ignore
-from google import auth                                # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google import auth  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.phishingprotection_v1beta1.types import phishingprotection
@@ -33,7 +33,9 @@ from .base import PhishingProtectionServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
 from .grpc import PhishingProtectionServiceV1Beta1GrpcTransport
 
 
-class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionServiceV1Beta1Transport):
+class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(
+    PhishingProtectionServiceV1Beta1Transport
+):
     """gRPC AsyncIO backend transport for PhishingProtectionServiceV1Beta1.
 
     Service to report phishing URIs.
@@ -50,13 +52,15 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'phishingprotection.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "phishingprotection.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             address (Optional[str]): The host for the channel to use.
@@ -85,21 +89,23 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'phishingprotection.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            ssl_channel_credentials: grpc.ChannelCredentials = None,
-            quota_project_id=None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "phishingprotection.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        ssl_channel_credentials: grpc.ChannelCredentials = None,
+        quota_project_id=None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -153,12 +159,21 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
             self._grpc_channel = channel
             self._ssl_channel_credentials = None
         elif api_mtls_endpoint:
-            warnings.warn("api_mtls_endpoint and client_cert_source are deprecated", DeprecationWarning)
+            warnings.warn(
+                "api_mtls_endpoint and client_cert_source are deprecated",
+                DeprecationWarning,
+            )
 
-            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
+            host = (
+                api_mtls_endpoint
+                if ":" in api_mtls_endpoint
+                else api_mtls_endpoint + ":443"
+            )
 
             if credentials is None:
-                credentials, _ = auth.default(scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id)
+                credentials, _ = auth.default(
+                    scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id
+                )
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -184,7 +199,9 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
             host = host if ":" in host else host + ":443"
 
             if credentials is None:
-                credentials, _ = auth.default(scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id)
+                credentials, _ = auth.default(
+                    scopes=self.AUTH_SCOPES, quota_project_id=quota_project_id
+                )
 
             # create a new channel. The provided one is ignored.
             self._grpc_channel = type(self).create_channel(
@@ -219,9 +236,12 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
         return self._grpc_channel
 
     @property
-    def report_phishing(self) -> Callable[
-            [phishingprotection.ReportPhishingRequest],
-            Awaitable[phishingprotection.ReportPhishingResponse]]:
+    def report_phishing(
+        self,
+    ) -> Callable[
+        [phishingprotection.ReportPhishingRequest],
+        Awaitable[phishingprotection.ReportPhishingResponse],
+    ]:
         r"""Return a callable for the report phishing method over gRPC.
 
         Reports a URI suspected of containing phishing content to be
@@ -244,15 +264,13 @@ class PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport(PhishingProtectionSer
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'report_phishing' not in self._stubs:
-            self._stubs['report_phishing'] = self.grpc_channel.unary_unary(
-                '/google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1/ReportPhishing',
+        if "report_phishing" not in self._stubs:
+            self._stubs["report_phishing"] = self.grpc_channel.unary_unary(
+                "/google.cloud.phishingprotection.v1beta1.PhishingProtectionServiceV1Beta1/ReportPhishing",
                 request_serializer=phishingprotection.ReportPhishingRequest.serialize,
                 response_deserializer=phishingprotection.ReportPhishingResponse.deserialize,
             )
-        return self._stubs['report_phishing']
+        return self._stubs["report_phishing"]
 
 
-__all__ = (
-    'PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport',
-)
+__all__ = ("PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport",)

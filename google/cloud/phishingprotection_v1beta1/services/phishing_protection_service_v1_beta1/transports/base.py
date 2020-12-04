@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.auth import credentials  # type: ignore
 
@@ -31,29 +31,29 @@ from google.cloud.phishingprotection_v1beta1.types import phishingprotection
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-phishingprotection',
+            "google-cloud-phishingprotection",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
+
 class PhishingProtectionServiceV1Beta1Transport(abc.ABC):
     """Abstract transport class for PhishingProtectionServiceV1Beta1."""
 
-    AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
     def __init__(
-            self, *,
-            host: str = 'phishingprotection.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "phishingprotection.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -76,24 +76,26 @@ class PhishingProtectionServiceV1Beta1Transport(abc.ABC):
                 your own client library.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -105,23 +107,21 @@ class PhishingProtectionServiceV1Beta1Transport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.report_phishing: gapic_v1.method.wrap_method(
-                self.report_phishing,
-                default_timeout=600.0,
-                client_info=client_info,
+                self.report_phishing, default_timeout=600.0, client_info=client_info,
             ),
-
         }
 
     @property
-    def report_phishing(self) -> typing.Callable[
-            [phishingprotection.ReportPhishingRequest],
-            typing.Union[
-                phishingprotection.ReportPhishingResponse,
-                typing.Awaitable[phishingprotection.ReportPhishingResponse]
-            ]]:
+    def report_phishing(
+        self,
+    ) -> typing.Callable[
+        [phishingprotection.ReportPhishingRequest],
+        typing.Union[
+            phishingprotection.ReportPhishingResponse,
+            typing.Awaitable[phishingprotection.ReportPhishingResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'PhishingProtectionServiceV1Beta1Transport',
-)
+__all__ = ("PhishingProtectionServiceV1Beta1Transport",)

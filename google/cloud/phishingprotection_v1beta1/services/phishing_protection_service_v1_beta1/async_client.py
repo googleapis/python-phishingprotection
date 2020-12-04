@@ -21,17 +21,22 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.phishingprotection_v1beta1.types import phishingprotection
 
-from .transports.base import PhishingProtectionServiceV1Beta1Transport, DEFAULT_CLIENT_INFO
-from .transports.grpc_asyncio import PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport
+from .transports.base import (
+    PhishingProtectionServiceV1Beta1Transport,
+    DEFAULT_CLIENT_INFO,
+)
+from .transports.grpc_asyncio import (
+    PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport,
+)
 from .client import PhishingProtectionServiceV1Beta1Client
 
 
@@ -43,22 +48,44 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
     DEFAULT_ENDPOINT = PhishingProtectionServiceV1Beta1Client.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = PhishingProtectionServiceV1Beta1Client.DEFAULT_MTLS_ENDPOINT
 
-    common_billing_account_path = staticmethod(PhishingProtectionServiceV1Beta1Client.common_billing_account_path)
-    parse_common_billing_account_path = staticmethod(PhishingProtectionServiceV1Beta1Client.parse_common_billing_account_path)
+    common_billing_account_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.parse_common_billing_account_path
+    )
 
-    common_folder_path = staticmethod(PhishingProtectionServiceV1Beta1Client.common_folder_path)
-    parse_common_folder_path = staticmethod(PhishingProtectionServiceV1Beta1Client.parse_common_folder_path)
+    common_folder_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.common_folder_path
+    )
+    parse_common_folder_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.parse_common_folder_path
+    )
 
-    common_organization_path = staticmethod(PhishingProtectionServiceV1Beta1Client.common_organization_path)
-    parse_common_organization_path = staticmethod(PhishingProtectionServiceV1Beta1Client.parse_common_organization_path)
+    common_organization_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.parse_common_organization_path
+    )
 
-    common_project_path = staticmethod(PhishingProtectionServiceV1Beta1Client.common_project_path)
-    parse_common_project_path = staticmethod(PhishingProtectionServiceV1Beta1Client.parse_common_project_path)
+    common_project_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.common_project_path
+    )
+    parse_common_project_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.parse_common_project_path
+    )
 
-    common_location_path = staticmethod(PhishingProtectionServiceV1Beta1Client.common_location_path)
-    parse_common_location_path = staticmethod(PhishingProtectionServiceV1Beta1Client.parse_common_location_path)
+    common_location_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.common_location_path
+    )
+    parse_common_location_path = staticmethod(
+        PhishingProtectionServiceV1Beta1Client.parse_common_location_path
+    )
 
-    from_service_account_file = PhishingProtectionServiceV1Beta1Client.from_service_account_file
+    from_service_account_file = (
+        PhishingProtectionServiceV1Beta1Client.from_service_account_file
+    )
     from_service_account_json = from_service_account_file
 
     @property
@@ -70,14 +97,21 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
         """
         return self._client.transport
 
-    get_transport_class = functools.partial(type(PhishingProtectionServiceV1Beta1Client).get_transport_class, type(PhishingProtectionServiceV1Beta1Client))
+    get_transport_class = functools.partial(
+        type(PhishingProtectionServiceV1Beta1Client).get_transport_class,
+        type(PhishingProtectionServiceV1Beta1Client),
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, PhishingProtectionServiceV1Beta1Transport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[
+            str, PhishingProtectionServiceV1Beta1Transport
+        ] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiate the phishing protection service v1 beta1 client.
 
         Args:
@@ -116,18 +150,18 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
             transport=transport,
             client_options=client_options,
             client_info=client_info,
-
         )
 
-    async def report_phishing(self,
-            request: phishingprotection.ReportPhishingRequest = None,
-            *,
-            parent: str = None,
-            uri: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> phishingprotection.ReportPhishingResponse:
+    async def report_phishing(
+        self,
+        request: phishingprotection.ReportPhishingRequest = None,
+        *,
+        parent: str = None,
+        uri: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> phishingprotection.ReportPhishingResponse:
         r"""Reports a URI suspected of containing phishing content to be
         reviewed. Once the report review is complete, its result can be
         found in the Cloud Security Command Center findings dashboard
@@ -173,8 +207,10 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, uri])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = phishingprotection.ReportPhishingRequest(request)
 
@@ -197,38 +233,24 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
 
-
-
-
-
-
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'google-cloud-phishingprotection',
+            "google-cloud-phishingprotection",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'PhishingProtectionServiceV1Beta1AsyncClient',
-)
+__all__ = ("PhishingProtectionServiceV1Beta1AsyncClient",)
