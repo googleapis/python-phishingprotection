@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-phishingprotection.git",
-        "sha": "0cc3cb2f50e01b4579a0014e06f33b91cbb91b61"
+        "sha": "43b38b5e2001d22318ac2e5152d1ceeb38e28b3b"
       }
     },
     {
