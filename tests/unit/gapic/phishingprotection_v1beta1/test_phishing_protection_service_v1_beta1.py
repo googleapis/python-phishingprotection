@@ -98,15 +98,25 @@ def test__get_default_mtls_endpoint():
     )
 
 
-def test_phishing_protection_service_v1_beta1_client_from_service_account_info():
+@pytest.mark.parametrize(
+    "client_class",
+    [
+        PhishingProtectionServiceV1Beta1Client,
+        PhishingProtectionServiceV1Beta1AsyncClient,
+    ],
+)
+def test_phishing_protection_service_v1_beta1_client_from_service_account_info(
+    client_class,
+):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = PhishingProtectionServiceV1Beta1Client.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "phishingprotection.googleapis.com:443"
 
@@ -128,9 +138,11 @@ def test_phishing_protection_service_v1_beta1_client_from_service_account_file(
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "phishingprotection.googleapis.com:443"
 
@@ -513,6 +525,22 @@ def test_report_phishing(
 
 def test_report_phishing_from_dict():
     test_report_phishing(request_type=dict)
+
+
+def test_report_phishing_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = PhishingProtectionServiceV1Beta1Client(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.report_phishing), "__call__") as call:
+        client.report_phishing()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == phishingprotection.ReportPhishingRequest()
 
 
 @pytest.mark.asyncio
