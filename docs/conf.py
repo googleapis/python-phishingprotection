@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# google-cloud-phishing-protection documentation build configuration file
+# google-cloud-phishingprotection documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -67,7 +67,7 @@ source_suffix = [".rst", ".md"]
 master_doc = "index"
 
 # General information about the project.
-project = u"google-cloud-phishing-protection"
+project = u"google-cloud-phishingprotection"
 copyright = u"2019, Google"
 author = u"Google APIs"
 
@@ -140,7 +140,7 @@ html_theme = "alabaster"
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "description": "Google Cloud Client Libraries for google-cloud-phishing-protection",
+    "description": "Google Cloud Client Libraries for google-cloud-phishingprotection",
     "github_user": "googleapis",
     "github_repo": "python-phishingprotection",
     "github_banner": True,
@@ -234,7 +234,7 @@ html_static_path = ["_static"]
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "google-cloud-phishing-protection-doc"
+htmlhelp_basename = "google-cloud-phishingprotection-doc"
 
 # -- Options for warnings ------------------------------------------------------
 
@@ -267,8 +267,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "google-cloud-phishing-protection.tex",
-        u"google-cloud-phishing-protection Documentation",
+        "google-cloud-phishingprotection.tex",
+        u"google-cloud-phishingprotection Documentation",
         author,
         "manual",
     )
@@ -302,8 +302,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "google-cloud-phishing-protection",
-        u"google-cloud-phishing-protection Documentation",
+        "google-cloud-phishingprotection",
+        u"google-cloud-phishingprotection Documentation",
         [author],
         1,
     )
@@ -321,11 +321,11 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "google-cloud-phishing-protection",
-        u"google-cloud-phishing-protection Documentation",
+        "google-cloud-phishingprotection",
+        u"google-cloud-phishingprotection Documentation",
         author,
-        "google-cloud-phishing-protection",
-        "google-cloud-phishing-protection Library",
+        "google-cloud-phishingprotection",
+        "google-cloud-phishingprotection Library",
         "APIs",
     )
 ]
