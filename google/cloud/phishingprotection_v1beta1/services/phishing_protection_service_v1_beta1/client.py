@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -33,7 +31,6 @@ from google.auth.exceptions import MutualTLSChannelError  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.phishingprotection_v1beta1.types import phishingprotection
-
 from .transports.base import (
     PhishingProtectionServiceV1Beta1Transport,
     DEFAULT_CLIENT_INFO,
@@ -359,7 +356,8 @@ class PhishingProtectionServiceV1Beta1Client(
 
         Args:
             request (google.cloud.phishingprotection_v1beta1.types.ReportPhishingRequest):
-                The request object. The ReportPhishing request message.
+                The request object.
+                The ReportPhishing request message.
             parent (str):
                 Required. The name of the project for which the report
                 will be created, in the format
@@ -376,7 +374,6 @@ class PhishingProtectionServiceV1Beta1Client(
                 This corresponds to the ``uri`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -405,10 +402,8 @@ class PhishingProtectionServiceV1Beta1Client(
         # there are no flattened fields.
         if not isinstance(request, phishingprotection.ReportPhishingRequest):
             request = phishingprotection.ReportPhishingRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if uri is not None:
