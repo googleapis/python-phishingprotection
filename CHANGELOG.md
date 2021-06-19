@@ -5,6 +5,13 @@
 [1]: https://pypi.org/project/google-cloud-phishing-protection/#history
 
 
+### [1.1.2](https://www.github.com/googleapis/python-phishingprotection/compare/v1.1.1...v1.1.2) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-phishingprotection/issues/1127)) ([#81](https://www.github.com/googleapis/python-phishingprotection/issues/81)) ([e8590bb](https://www.github.com/googleapis/python-phishingprotection/commit/e8590bbfa6e70d915b618ee265d7cd59cab07e98)), closes [#1126](https://www.github.com/googleapis/python-phishingprotection/issues/1126)
+
 ### [1.1.1](https://www.github.com/googleapis/python-phishingprotection/compare/v1.1.0...v1.1.1) (2021-05-28)
 
 
