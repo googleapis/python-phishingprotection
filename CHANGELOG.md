@@ -8,15 +8,15 @@
 ### [1.2.2](https://www.github.com/googleapis/python-phishingprotection/compare/v1.2.1...v1.2.2) (2021-07-26)
 
 
-### Features
-
-* add Samples section to CONTRIBUTING.rst ([#96](https://www.github.com/googleapis/python-phishingprotection/issues/96)) ([c9ee6a2](https://www.github.com/googleapis/python-phishingprotection/commit/c9ee6a2838b8291a1205532b169e7fad03f1c440))
-
-
 ### Bug Fixes
 
 * **deps:** pin 'google-{api,cloud}-core', 'google-auth' to allow 2.x versions ([#95](https://www.github.com/googleapis/python-phishingprotection/issues/95)) ([0dab5c3](https://www.github.com/googleapis/python-phishingprotection/commit/0dab5c370cc34481227eb27ffa2c5defb816d8e0))
 * enable self signed jwt for grpc ([#101](https://www.github.com/googleapis/python-phishingprotection/issues/101)) ([ac587fd](https://www.github.com/googleapis/python-phishingprotection/commit/ac587fd6d0bb6393f2c1743888c092f231b3f91d))
+
+
+### Documentation
+
+* add Samples section to CONTRIBUTING.rst ([#96](https://www.github.com/googleapis/python-phishingprotection/issues/96)) ([c9ee6a2](https://www.github.com/googleapis/python-phishingprotection/commit/c9ee6a2838b8291a1205532b169e7fad03f1c440))
 
 
 ### Miscellaneous Chores
