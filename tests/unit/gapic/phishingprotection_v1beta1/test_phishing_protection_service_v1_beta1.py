@@ -1183,7 +1183,6 @@ def test_phishing_protection_service_v1_beta1_transport_auth_adc(transport_class
     [
         transports.PhishingProtectionServiceV1Beta1GrpcTransport,
         transports.PhishingProtectionServiceV1Beta1GrpcAsyncIOTransport,
-        transports.PhishingProtectionServiceV1Beta1RestTransport,
     ],
 )
 def test_phishing_protection_service_v1_beta1_transport_auth_gdch_credentials(
