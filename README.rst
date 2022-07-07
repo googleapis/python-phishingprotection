@@ -3,7 +3,7 @@ Python Client for Phishing Protection API
 
 |preview| |pypi| |versions|
 
-`Phishing Protection API`_: 
+`Phishing Protection API`_: helps prevent users from accessing phishing sites by identifying various signals associated with malicious content, including the use of your brand assets, classifying malicious content that uses your brand and reporting the unsafe URLs to Google Safe Browsing. Once a site is propagated to Safe Browsing, users will see warnings across more than 4 billion devices.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
