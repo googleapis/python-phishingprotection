@@ -16,7 +16,17 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
@@ -168,11 +178,11 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[
             str, PhishingProtectionServiceV1Beta1Transport
         ] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the phishing protection service v1 beta1 client.
@@ -216,12 +226,12 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
 
     async def report_phishing(
         self,
-        request: Union[phishingprotection.ReportPhishingRequest, dict] = None,
+        request: Optional[Union[phishingprotection.ReportPhishingRequest, dict]] = None,
         *,
-        parent: str = None,
-        uri: str = None,
+        parent: Optional[str] = None,
+        uri: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> phishingprotection.ReportPhishingResponse:
         r"""Reports a URI suspected of containing phishing content to be
@@ -262,7 +272,7 @@ class PhishingProtectionServiceV1Beta1AsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.phishingprotection_v1beta1.types.ReportPhishingRequest, dict]):
+            request (Optional[Union[google.cloud.phishingprotection_v1beta1.types.ReportPhishingRequest, dict]]):
                 The request object. The ReportPhishing request message.
             parent (:class:`str`):
                 Required. The name of the project for which the report

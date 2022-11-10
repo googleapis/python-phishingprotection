@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -64,7 +75,7 @@ class PhishingProtectionServiceV1Beta1ClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[PhishingProtectionServiceV1Beta1Transport]:
         """Returns an appropriate transport class.
 
@@ -319,7 +330,9 @@ class PhishingProtectionServiceV1Beta1Client(
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, PhishingProtectionServiceV1Beta1Transport, None] = None,
+        transport: Optional[
+            Union[str, PhishingProtectionServiceV1Beta1Transport]
+        ] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -417,12 +430,12 @@ class PhishingProtectionServiceV1Beta1Client(
 
     def report_phishing(
         self,
-        request: Union[phishingprotection.ReportPhishingRequest, dict] = None,
+        request: Optional[Union[phishingprotection.ReportPhishingRequest, dict]] = None,
         *,
-        parent: str = None,
-        uri: str = None,
+        parent: Optional[str] = None,
+        uri: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> phishingprotection.ReportPhishingResponse:
         r"""Reports a URI suspected of containing phishing content to be
