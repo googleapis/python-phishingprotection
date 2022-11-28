@@ -567,7 +567,7 @@ class PhishingProtectionServiceV1Beta1Client(
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-phishingprotection",
+            "google-cloud-phishing-protection",
         ).version,
     )
 except pkg_resources.DistributionNotFound:

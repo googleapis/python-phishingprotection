@@ -30,7 +30,7 @@ from google.cloud.phishingprotection_v1beta1.types import phishingprotection
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-phishingprotection",
+            "google-cloud-phishing-protection",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
